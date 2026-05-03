@@ -1,285 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تيك داون - تحميل فيديوهات تيك توك</title>
+    <title>حاسبة الوزن والنظام الغذائي</title>
     <style>
-        :root {
-            --bg-dark: #0b0e14;
-            --card-dark: #161b22;
-            --accent-gradient: linear-gradient(90deg, #ff0080, #7928ca);
-            --text-main: #ffffff;
-            --text-dim: #8b949e;
-            --border-color: #30363d;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Navbar */
-        nav {
-            width: 100%;
-            max-width: 1200px;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-sizing: border-box;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-box {
-            background: var(--accent-gradient);
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        .site-title {
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 40px 20px;
-            max-width: 700px;
-        }
-
-        .promo-badge {
-            background: rgba(255, 0, 128, 0.1);
-            color: #ff0080;
-            padding: 6px 16px;
-            border-radius: 25px;
-            font-size: 13px;
-            display: inline-block;
-            margin-bottom: 20px;
-        }
-
-        h1 {
-            font-size: 2.2rem;
-            margin: 10px 0;
-        }
-
-        h1 span {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .description {
-            color: var(--text-dim);
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-
-        /* Input Container */
-        .input-card {
-            background: var(--card-dark);
-            border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 25px;
-            width: 90%;
-            max-width: 550px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-            position: relative;
-        }
-
-        .input-wrapper {
-            position: relative;
-            margin-bottom: 15px;
-        }
-
-        input[type="text"] {
-            width: 100%;
-            background: #0d1117;
-            border: 1px solid var(--border-color);
-            padding: 18px 20px;
-            border-radius: 12px;
-            color: white;
-            font-size: 16px;
-            box-sizing: border-box;
-            outline: none;
-        }
-
-        .input-wrapper::after {
-            content: '📋 جـيـد';
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: #21262d;
-            padding: 5px 10px;
-            border-radius: 6px;
-            font-size: 12px;
-            color: var(--text-dim);
-        }
-
-        .download-btn {
-            width: 100%;
-            background: var(--accent-gradient);
-            color: white;
-            border: none;
-            padding: 18px;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        /* Suggested Section */
-        .suggested-title {
-            margin-top: 60px;
-            text-align: right;
-            width: 90%;
-            max-width: 1000px;
-            font-size: 20px;
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            width: 90%;
-            max-width: 1000px;
-            padding: 20px 0 60px 0;
-        }
-
-        .card {
-            background: var(--card-dark);
-            border-radius: 18px;
-            border: 1px solid var(--border-color);
-            overflow: hidden;
-            transition: transform 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .thumb {
-            width: 100%;
-            height: 450px;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-
-        .thumb::after {
-            content: '▶ 59 ثانية';
-            position: absolute;
-            bottom: 15px;
-            right: 15px;
-            background: rgba(0,0,0,0.6);
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-        }
-
-        .card-body {
-            padding: 20px;
-        }
-
-        .username {
-            color: #ff0080;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-
-        .video-title {
-            font-weight: bold;
-            font-size: 16px;
-            margin-bottom: 15px;
-        }
-
-        .action-btn {
-            background: #21262d;
-            color: white;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: bold;
-            border: 1px solid var(--border-color);
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 1.8rem; }
-        }
+        :root { --primary: #FFD700; --dark: #1a1a1a; --white: #ffffff; }
+        body { background-color: var(--primary); color: var(--dark); font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
+        .container { width: 90%; max-width: 500px; background: var(--white); padding: 25px; margin: 30px 0; border-radius: 20px; box-shadow: 10px 10px 0px var(--dark); border: 3px solid var(--dark); }
+        h1 { text-align: center; font-size: 22px; }
+        .input-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; }
+        input { width: 100%; padding: 12px; border: 2px solid var(--dark); border-radius: 10px; box-sizing: border-box; }
+        .btn { width: 100%; background: var(--dark); color: var(--primary); border: none; padding: 15px; border-radius: 10px; font-size: 18px; font-weight: bold; cursor: pointer; margin-top: 10px; }
+        #result-box { margin-top: 20px; display: none; padding: 15px; border-radius: 12px; border: 2px solid var(--dark); background: #fdfdfd; }
+        .diet-plan { margin-top: 15px; text-align: right; background: #fff9c4; padding: 10px; border-radius: 8px; font-size: 14px; }
+        .diet-plan h3 { margin-top: 0; color: #d32f2f; font-size: 16px; }
+        .ad-space { margin: 15px 0; min-height: 90px; background: #eee; display: flex; align-items: center; justify-content: center; border: 1px dashed #999; }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo-section">
-            <div class="logo-box">تي</div>
-            <div class="site-title">تيك داون</div>
-        </div>
-        <div style="font-size: 20px; cursor: pointer;">☀️</div>
-    </nav>
+<div class="container">
+    <h1>حاسبة الوزن والنظام الغذائي 🥗</h1>
 
-    <div class="hero">
-        <div class="promo-badge">✨ تحميل سريع، مجاني، وبدون علامة مائية</div>
-        <h1>أسـهـل أداة لـتـحـمـيـل مـقـاطـع <span>تـيـك تـوك</span></h1>
-        <p class="description">انسخ رابط الفيديو من تطبيق TikTok، ثم الصقه في النطاق أدناه لتحميله بصيغة MP4 بأعلى جودة.</p>
+    <div class="ad-space">
+        <!-- كود إعلان Adsterra هنا -->
+        إعلان علوي
     </div>
 
-    <div class="input-card">
-        <div class="input-wrapper">
-            <input type="text" placeholder="لصق رابط فيديو تيك توك">
-        </div>
-        <button class="download-btn">🔍 فـيـديـو</button>
+    <div class="input-group">
+        <label>الطول (سم):</label>
+        <input type="number" id="height" placeholder="مثال: 170">
     </div>
 
-    <div class="suggested-title">فيديوهات تيك توك الهاتفية ومميزة 🔥</div>
-
-    <div class="grid">
-        <div class="card">
-            <div class="thumb" style="background-image: url('https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=1000&auto=format&fit=crop');"></div>
-            <div class="card-body">
-                <div class="username">@MrBeast</div>
-                <div class="video-title">تحدي مستر بيست الجديد بمليون دولار</div>
-                <a href="#" class="action-btn">📥 تحميل الفيديو</a>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="thumb" style="background-image: url('https://images.unsplash.com/photo-1554080353-a576cf803bda?q=80&w=1000&auto=format&fit=crop');"></div>
-            <div class="card-body">
-                <div class="username">@KhabyLame</div>
-                <div class="video-title">طريقة بسيطة جداً لفتح العصير 🥤</div>
-                <a href="#" class="action-btn">📥 تحميل الفيديو</a>
-            </div>
-        </div>
+    <div class="input-group">
+        <label>الوزن (كجم):</label>
+        <input type="number" id="weight" placeholder="مثال: 70">
     </div>
+
+    <button class="btn" onclick="calculate()">تحليل الوزن والنظام الغذائي</button>
+
+    <div id="result-box">
+        <div id="bmi-res" style="font-size: 20px; font-weight: bold; text-align: center;"></div>
+        <div id="diet-info" class="diet-plan"></div>
+    </div>
+
+    <div class="ad-space">
+        <!-- كود إعلان Adsterra هنا -->
+        إعلان سفلي
+    </div>
+</div>
+
+<script>
+    function calculate() {
+        const h = document.getElementById('height').value / 100;
+        const w = document.getElementById('weight').value;
+        const resBox = document.getElementById('result-box');
+        const bmiRes = document.getElementById('bmi-res');
+        const dietInfo = document.getElementById('diet-info');
+
+        if (h > 0 && w > 0) {
+            const bmi = (w / (h * h)).toFixed(1);
+            resBox.style.display = "block";
+            bmiRes.innerHTML = `مؤشر الكتلة: ${bmi}`;
+
+            let plan = "";
+            if (bmi < 18.5) {
+                plan = "<h3>نظام زيادة الوزن:</h3><ul><li><b>ماذا تأكل:</b> المكسرات، الأفوكادو، زيت الزيتون، اللحوم الحمراء، والنشويات (بطاطس، أرز).</li><li><b>نصيحة:</b> تناول 5 وجبات صغيرة يومياً بدلاً من 3 كبيرة.</li></ul>";
+            } else if (bmi < 25) {
+                plan = "<h3>نظام المحافظة على الوزن:</h3><ul><li><b>ماذا تأكل:</b> الخضروات الورقية، الفواكه، البروتينات الخالية من الدهون (صدر دجاج، سمك).</li><li><b>نصيحة:</b> استمر على توازن الكربوهيدرات والبروتين والدهون الصحية.</li></ul>";
+            } else {
+                plan = "<h3>نظام تنزيل الوزن:</h3><ul><li><b>ماذا تأكل:</b> البيض المسلوق، الشوفان، السلطات الخضراء، التفاح، والزبادي قليل الدسم.</li><li><b>نصيحة:</b> اشرب كوبين من الماء قبل كل وجبة وقلل من الخبز الأبيض والسكريات.</li></ul>";
+            }
+            dietInfo.innerHTML = plan;
+        } else {
+            alert("أدخل الطول والوزن بشكل صحيح");
+        }
+    }
+</script>
 
 </body>
 </html>
